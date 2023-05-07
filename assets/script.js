@@ -8,5 +8,5 @@ let highscore = document.getElementById('highscore');
 let inputElement = document.getElementById('initials');
 let submitButton = document.getElementById('submit-button');
 let clearButton = document.getElementById('clear-button');
-
+let time = document.getElementById('time');
 

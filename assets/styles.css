@@ -1,0 +1,35 @@
+body{
+    background-color: #7F8882;
+    color: #071342;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0 auto;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin: 15px;
+}
+
+.main{
+justify-content: center;
+display: flex;
+align-items: center;
+}
+
+#start-button{
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+}
+
+.submit-button, .clear-button{
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+}
+
+a:hover, .scores, #start-button:hover, .clear-button:hover, .submit-button{
+    color: red;
+}
