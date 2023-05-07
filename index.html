@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Coding Quiz</title>
+    <link href="./assets/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="scores">View Highscores</a>
+
+        <div><span id="time"></span></div>
+    </header>
+    
+    <section class ="main">
+   
+    <section id=start class="quiz">
+    <h2 id=title>The Coding Quiz</h2>
+    <p> This timed, multiple choice quiz will test your coding knowledge. Good luck!</p>
+    <button id=start-button class="button">Start Quiz</button>
+    </section>
+
+<section id=questions="quiz" hidden>
+
+    <h2 id=questions></h2>
+
+    <div id=multiple-choice>
+    <button id=option0 class="button opt-button"></button>
+    <button id=option1 class="button opt-button"></button>
+    <button id=option2 class="button opt-button"></button>
+    <button id=option3 class="button opt-button"></button>
+    </div>
+
+    <div id=results>
+        <p id=resultMessage></p>
+    </div>
+
+</section>
+
+<section id=answers class="quiz" hidden>
+    <h2>Finished!</h2>
+    <p>Your final score is <span id=answers></span></p> 
+    <form class="inline-form" id="sub-form">
+        <label for="Initials">Enter initials:</label>
+        <input type="text" id ="initials">
+        <button id="submit-button" class="submit-button">Submit</button>
+    </form>
+</section>
+
+<section hidden class="scoreboard" id="scoreboard">
+    <h2>Scoreboard</h2>
+    <ol id="highscore">
+    </ol>
+    <section class="endButton">
+        <button id="clearButton" class="button">Clear Scores</button>
+    </section>
+</section>
+
+<script src="./assets/script.js"></script>   
+</body>
+</html>
