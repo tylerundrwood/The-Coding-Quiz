@@ -8,5 +8,14 @@ let highscore = document.getElementById('highscore');
 let inputElement = document.getElementById('initials');
 let submitButton = document.getElementById('submit-button');
 let clearButton = document.getElementById('clear-button');
-let time = document.getElementById('time');
+let displayTime = document.getElementById('time');
 
+//variables with no data
+
+
+//button click events
+document.getElementById('start-button').addEventListener('click', startTest);
+document.getElementById('multiple-choice').addEventListener('click', checkAnswer);
+submitButton.addEventListener('click', saveScore);
+clearButton.addEventListener('click', clearScores);
+scoreboard.addEventListener('click', revealScoreboard);
