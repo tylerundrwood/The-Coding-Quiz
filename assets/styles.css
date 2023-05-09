@@ -33,3 +33,6 @@ align-items: center;
 a:hover, .scores, #start-button:hover, .clear-button:hover, .submit-button{
     color: red;
 }
+#result{
+    display: none;
+}
