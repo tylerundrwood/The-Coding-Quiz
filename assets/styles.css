@@ -36,3 +36,15 @@ a:hover, .scores, #start-button:hover, .clear-button:hover, .submit-button{
 #result{
     display: none;
 }
+
+.quiz{
+    max-width:100%;
+    margin: 150px;
+    padding: 100px;
+    border-radius: 10%;
+}
+.inline-form{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}

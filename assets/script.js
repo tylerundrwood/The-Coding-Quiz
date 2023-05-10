@@ -1,16 +1,19 @@
 let startQuiz = document.getElementById('start');
-let questions = document.getElementById('questions');
+let questionsQuiz = document.getElementById('questions');
 let results = document.getElementById('results');
 let answers = document.getElementById('answers');
 let resultMessage = document.getElementById('result-message');
 let scoreboard = document.getElementById('scoreboard');
+let resultDiv = document.getElementById('result-div');
 let topScore = document.getElementById('topScore');
 let finalAnswerElement = document.getElementById('finalAnswer')
 let inputElement = document.getElementById('initials');
 let submitButton = document.getElementById('submit-button');
 let clearButton = document.getElementById('clear-button');
+let scoresHref =document.getElementById('scores-href');
 let displayTime = document.getElementById('time');
 let backButton = document.getElementById('back-button');
+
 //variables with no data
 let time;
 let interval;
@@ -22,14 +25,14 @@ backButton.addEventListener('click',returnToStart);
 document.getElementById('start-button').addEventListener('click', startTest);
 document.getElementById('multiple-choice').addEventListener('click', checkAnswer);
 submitButton.addEventListener('click', saveScore);
-clearButton.addEventListener('click', erase);
+//clearButton.addEventListener('click', erase);
 scoreboard.addEventListener('click', revealScoreboard);
 
 //when page loads hide everything but the start menu
 
 function hideQuiz(){
     startQuiz.setAttribute('hidden', true);
-    questions.setAttribute('hidden', true);
+    questionsQuiz.setAttribute('hidden', true);
     answers.setAttribute('hidden',true);
     scoreboard.setAttribute('hidden', true);
 }
@@ -38,50 +41,50 @@ function hideQuiz(){
 
 //question 1
 let question = [{
-    questionChoice: "All HTML elements are considered what?",
+    questionText: "All HTML elements are considered what?",
     options: ["1. Objects", "2. Code", "3. Tables", "4. Boxes"],
     answer: "4. Boxes",
 },
 
 //question 2
 {
-    questionChoice:"What are the CSS properties that are used to add space around sections of content?",
+    questionText:"What are the CSS properties that are used to add space around sections of content?",
     options: ["1. Break", "2. Padding", "3. Cleaner", "4. Spacing"],
     answer: "2. Padding",
 },
 
 //question 3
 {
-    questionChoice:"What is the format called that is used for storing and transporting data?",
+    questionText:"What is the format called that is used for storing and transporting data?",
     options:["1. JSON", "2. Font", "3. Syntax", "4. HTML"],
     answer:"1. JSON",
 },
 
 //question 4
 {
-    questionChoice:"In JavaScript, what is a block of code called that is used to perform a specific task?",
+    questionText:"In JavaScript, what is a block of code called that is used to perform a specific task?",
     options:["1. Variable", "2. Declaration", "3. Function", "4. String"],
     answer: "3. Function",
 },
 
 //question 5
 {
-    questionChoice:"In JavaScript, what element is used to store and manipulate text, usually in multiples?",
+    questionText:"In JavaScript, what element is used to store and manipulate text, usually in multiples?",
     options: ["1. Recorders", "2. Arrays", "3. Variables", "4. Strings"],
     answer: "4. Strings",  
 },
 ];
 
 //hidden results
-function hiddenResultstext(){
-    resultMessage.style.display = 'none';
+function hideResultMessage(){
+    resultDiv.style.display = 'none';
 }
 
 //start test function 
 function startTest(){
     //remove the hidden attribute
     hideQuiz();
-    questions.removeAttribute('hidden');
+    questionsQuiz.removeAttribute('hidden');
      //start question with an index of 0
      currentQuestion = 0;
      displayQuestion();
@@ -113,8 +116,8 @@ function displayQuestion(){
     let questions = question[currentQuestion];
     let options = questions.options;
 
-    let questionElement = document.querySelector('#question-choice');
-    questionElement.textContent = question.questionChoice;
+    let h2QuestionElement = document.querySelector('#question-text');
+    h2QuestionElement.textContent = question.questionText;
 
     for(let x = 0; x < options.length; x++) { 
         let option = options[x];
@@ -125,19 +128,19 @@ function displayQuestion(){
 
 //compare the users choice with the answer
 function choiceIsCorrect(optionButton) {
-    return optionButton.textContent === questions[currentQuestion].answer;
+    return optionButton.textContent === question[currentQuestion].answer;
 }
 
 //if answer is incorrect subtract time
 function checkAnswer(eventObject) {
     let optionButton = eventObject.target;
-    resultDiv.style.display = "block";
+   // resultDiv.style.display = "block";
     if (choiceIsCorrect(optionButton)) {
-        resultText.textContent = "Correct!";
-        setTimeout(hideResultText, 1000);
+        resultMessage.textContent = "Correct!";
+        setTimeout(hideResultMessage, 1000);
     } else {
-        resultText.textContent = "Incorrect!";
-        setTimeout(hideResultText, 1000);
+        resultMessage.textContent = "Incorrect!";
+        setTimeout(hideResultMessage, 1000);
         if (time >= 10) {
             time = time - 10;
             displayCount();
