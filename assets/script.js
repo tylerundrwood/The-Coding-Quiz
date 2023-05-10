@@ -1,4 +1,4 @@
-let start = document.getElementById('start');
+let startQuiz = document.getElementById('start');
 let questions = document.getElementById('questions');
 let results = document.getElementById('results');
 let answers = document.getElementById('answers');
@@ -10,25 +10,25 @@ let inputElement = document.getElementById('initials');
 let submitButton = document.getElementById('submit-button');
 let clearButton = document.getElementById('clear-button');
 let displayTime = document.getElementById('time');
-
+let backButton = document.getElementById('back-button');
 //variables with no data
 let time;
 let interval;
-let highScore;
+let highscoreArr;
 let currentQuestion;
 
 //button click events
+backButton.addEventListener('click',returnToStart);
 document.getElementById('start-button').addEventListener('click', startTest);
 document.getElementById('multiple-choice').addEventListener('click', checkAnswer);
 submitButton.addEventListener('click', saveScore);
-clearButton.addEventListener('click', clearScores);
+clearButton.addEventListener('click', erase);
 scoreboard.addEventListener('click', revealScoreboard);
-backButton.addEventListener('click',returnToStart);
 
 //when page loads hide everything but the start menu
 
 function hideQuiz(){
-    start.setAttribute('hidden', true);
+    startQuiz.setAttribute('hidden', true);
     questions.setAttribute('hidden', true);
     answers.setAttribute('hidden',true);
     scoreboard.setAttribute('hidden', true);
@@ -188,9 +188,66 @@ function saveScore(event) {
 
 //update local storage with the scoreboard
 function updateSavedScoreboard(scoreboardItem) {
-    let topScore = getScoreboard();
-    topScore.push(scoreboardItem);
-    localStorage.setItem('topScore', JSON.stringify(topScore));
+    let highscoreArr = getScoreboard();
+    highscoreArr.push(scoreboardItem);
+    localStorage.setItem('highscoreArr', JSON.stringify(highscoreArr));
 }
 
+// get (highscoreArr) form local storage and parse it into a javascript object
+function getScoreboard() {
+    let savedScoreboard = localStorage.getItem('highscoreArr');
+   if (savedScoreboard !== null) {
+    let highscoreArr = JSON.parse(savedScoreboard);
+    return highscoreArr;
+   } else {
+    highscoreArr = [];
+   }
+   return highscoreArr;
+}
 
+function displayScoreboard() {
+    let sortedHighscoreArr = gatherScoreboard();
+    topScore.innerHTML = "";
+    for (let x = 0; x < sortedHighscoreArr.length; x++) {
+        let scoreboardEntry = sortedHighscoreArr[x];
+        let newListItem = document.createElement('li');
+        newListItem.textContent=scoreboardEntry.initials + scoreboardEntry.answers;
+        topScore.append(newListItem);
+    }
+}
+
+//arrage scoreboard from low to high scores
+function gatherScoreboard() {
+    let sortedHighscoreArr = getScoreboard();
+    if (!highscoreArr) {
+        return;
+    }
+    highscoreArr.sort(function(a, b){
+        return b.answers - a.answers;
+    });
+    return highscoreArr;
+}
+
+//clear the page
+function erase() {
+    localStorage.clear();
+    displayScoreboard();
+}
+
+//once the user exits the scoreboard,show the start screen and hide everything else
+function returnToStart() {
+    hideQuiz();
+    startQuiz.removeAttribute('hidden');
+};
+
+function revealScoreboard() {
+    hideQuiz();
+    scoreboard.removeAttribute('hidden');
+
+     //reset test clock to 0
+     clearInterval(interval);
+
+     displayCount();
+
+     displayScoreboard();
+};
