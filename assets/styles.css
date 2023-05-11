@@ -24,15 +24,22 @@ align-items: center;
     color: black;
 }
 
-.submit-button, .clear-button{
+.button{
     cursor: pointer;
     font-size: 20px;
     color: black;
 }
 
-a:hover, .scores, #start-button:hover, .clear-button:hover, .submit-button{
+.opt-button{
+    margin: 5px;
+    width: 100%;
+    text-align: left;
+}
+
+a:hover, .scores, #start-button:hover, .button:hover{
     color: red;
 }
+
 #result{
     display: none;
 }
@@ -43,6 +50,7 @@ a:hover, .scores, #start-button:hover, .clear-button:hover, .submit-button{
     padding: 100px;
     border-radius: 10%;
 }
+
 .inline-form{
     display: flex;
     flex-wrap: wrap;
