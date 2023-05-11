@@ -56,3 +56,11 @@ a:hover, .scores, #start-button:hover, .button:hover{
     flex-wrap: wrap;
     align-items: center;
 }
+
+.quiz{
+    max-width:100%;
+    margin: 150px;
+    border: 10px solid #071342;
+    padding: 120px;
+    border-radius: 15%;
+}
