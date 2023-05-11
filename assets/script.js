@@ -40,7 +40,7 @@ function hideQuiz(){
 //quiz questions
 
 //question 1
-let question = [{
+let questions = [{
     questionText: "All HTML elements are considered what?",
     options: ["1. Objects", "2. Code", "3. Tables", "4. Boxes"],
     answer: "4. Boxes",
@@ -87,7 +87,7 @@ function startTest(){
     questionsQuiz.removeAttribute('hidden');
      //start question with an index of 0
      currentQuestion = 0;
-     displayQuestion();
+     displayQuestions();
 
      //when the start button is pressed, the timer is set to 60 seconds
     time = 60;
@@ -112,9 +112,9 @@ function displayCount() {
     displayTime.textContent = time;
 }
 //reveal the question and the question option
-function displayQuestion(){
-    let questions = question[currentQuestion];
-    let options = questions.options;
+function displayQuestions(){
+    let question = questions[currentQuestion];
+    let options = question.options;
 
     let h2QuestionElement = document.querySelector('#question-text');
     h2QuestionElement.textContent = question.questionText;
@@ -128,7 +128,7 @@ function displayQuestion(){
 
 //compare the users choice with the answer
 function choiceIsCorrect(optionButton) {
-    return optionButton.textContent === question[currentQuestion].answer;
+    return optionButton.textContent === questions[currentQuestion].checkAnswer;
 }
 
 //if answer is incorrect subtract time
@@ -153,8 +153,8 @@ function checkAnswer(eventObject) {
     //after the question is answered then switches to the next question
     currentQuestion++;
     //when every question is answered, the quiz ends
-    if (currentQuestion < question.length) {
-        displayQuestion();
+    if (currentQuestion < questions.length) {
+        displayQuestions();
     } else{
         endTest();
     }
@@ -252,5 +252,5 @@ function revealScoreboard() {
 
      displayCount();
 
-     displayScoreboard();
+     //displayScoreboard();
 };
